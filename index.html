@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title> Birthday Application </title>
+	</head>	
+	<style>
+		* { font-size : 50px ; font-family : Calibri ; }
+		body { background-color : LightGray ; }
+		.btn { width : 20% ; border-radius : 40px ; background-color :#EC7063 ; color : white ; }
+		.btn:hover{ color : black ; }
+
+        /* CSS for h1 */
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	    background-color : black ; color : white ; 
+	    border-radius : 25% ; width : 90% ; 
+        }
+
+	#msg { background-color  : purple ; color : white ; width : 80% ; border-radius : 40px ; }
+
+	</style>
+<body>
+<center>
+<h1>Birthday Application </h1>
+<form onsubmit = "party()">
+	<input type = "submit"  value = "Add" class = "btn"  id = "add" />
+	<input type = "submit"  value = "Remove" class = "btn" id = "remove" />
+	<input type = "submit"  value = "Show" class = "btn" id = "show" />
+</form>
+<h2 id = "msg" />
+<script>
+	let names = ["Sanskar" , "Mummy"] ;	
+	function party()
+	{
+		event.preventDefault();
+		let add = document.getElementById("add");
+		let remove = document.getElementById("remove"); 
+		let show = document.getElementById("show");
+		let ele = document.activeElement.value ;		
+		let msg = document.getElementById("msg");
+
+
+		if ( ele == "Add")
+		{
+			let n = prompt("Enter Your Name");
+			if (n !== null && n.trim() !== "") // Check if input is not null or empty
+			{ 
+			names.push(n);
+			msg.innerHTML = names.join(", "); // Joining with a comma and space
+            		}
+        	}
+		else if ( ele == "Remove")
+		{
+			let n = prompt("Enter name to be removed");
+			if (n != "")
+			{
+				let pos = names.indexOf(n);
+				if (pos == -1)
+				{
+					alert(n + " Not Found");
+				}
+				else 
+				{
+					names.splice(pos , 1);
+					alert(n + " removed");
+				}
+				msg.innerHTML = "Birthday Party Added Members are : " + names; 
+
+			}
+		}
+
+		else if (ele == "Show")
+		{
+			msg.innerHTML = "Birthday Party Added Members are : " + names ; 
+
+		}
+		
+
+
+	}
+
+	
+</script>
+</center>
+</body>
+</html>
